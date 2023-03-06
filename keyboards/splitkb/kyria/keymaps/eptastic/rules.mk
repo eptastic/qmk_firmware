@@ -6,3 +6,4 @@ CAPS_WORD_ENABLE = yes    # Enable caps word function
 MOUSEKEY_ENABLE = yes # enable mouse keys support 
 LEADER_ENABLE = yes # enable Leader Key
 TAP_DANCE_ENABLE = yes # enable Tap Dance
+AUTO_SHIFT_ENABLE = yes # enable Auto Shift (Used only for num pad keys)
