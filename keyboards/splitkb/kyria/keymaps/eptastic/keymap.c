@@ -73,24 +73,24 @@ tap_dance_action_t tap_dance_actions[] = {
  * Base Layer: EXTEND 
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |  WH_U  |   NO  | NO  | WBAK | WFWD | MS_U |                              | PG_UP| HOME | NO   |  END |   DEL|  ESC   |
+ * |  WH_U  |   NO  | NO  | WBAK | WFWD | MS_U |                              | PG_UP| HOME | APP  |  END |   DEL|  MS_UP |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  WH_D  | LGUI  |  ALT |  SH | CTR  | MS_D |                              | PG_D |  LEFT| DOWN | UP   | RIGHT|  APP   |
+ * |  WH_D  | LGUI  |  ALT |  SH | CTR  | MS_D |                              | PG_D |  LEFT| DOWN | UP   | RIGHT|  MS_D  |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |   -    |   Z  |   X  |   C  |   V  |  MS_L| MS_R | NO   |  |   NO |  RWD | FFRD | MB1  | MB2  |  MB3 |  NO  |   -    |
+ * |   -    |   Z  |   X  |   C  |   V  |  NO  | MS_L | MS_R |  |   NO |  RWD | FFRD | MB1  | MB2  |  MB3 |  NO  |   NO   |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |   -  |  -   |  -   |  -   |  -   |  |  -   |      |      |      |   -  |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [EXTEND] = LAYOUT(
-            KC_WH_U, KC_NO, KC_NO, KC_WBAK, KC_WFWD, KC_MS_U,              KC_PGUP, KC_HOME, KC_NO, KC_END, KC_DEL, KC_ESC,
+            KC_WH_U, KC_NO, KC_NO, KC_WBAK, KC_WFWD, KC_MS_U,              KC_PGUP, KC_HOME, KC_APP, KC_END, KC_DEL, KC_MS_U,
             
-            KC_WH_D, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_MS_D,              KC_PGDN, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_APP, 
+            KC_WH_D, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_MS_D,              KC_PGDN, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_MS_D, 
     
-KC_TRNS, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_MS_L, KC_MS_R,KC_NO,    KC_NO, KC_MRWD, KC_MFFD, KC_BTN1, KC_BTN2, KC_BTN3, KC_NO, KC_TRNS, 
+KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R ,    KC_NO, KC_MRWD, KC_MFFD, KC_BTN1, KC_BTN2, KC_BTN3, KC_NO, KC_NO, 
         
-                            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_NO, KC_TRNS
+                            KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
         ),
 
 /*
@@ -115,7 +115,7 @@ KC_TRNS, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_MS_L, KC_MS_R,KC_NO,
             
             KC_F3, KC_F4, KC_F5, TD(TD_LBRC), TD(TD_RBRC), KC_GRAVE, KC_F6, KC_F7, KC_F8, KC_F9, KC_0, KC_1, KC_2, KC_3, KC_ENT, KC_F12, 
             
-            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LGUI, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+            KC_NO, KC_NO, KC_NO, KC_NO, KC_LGUI, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
             ),
 
 
