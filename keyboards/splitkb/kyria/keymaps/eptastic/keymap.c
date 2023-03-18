@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include QMK_KEYBOARD_H
+#include QMK_KEYBOARD_H  
 
 enum layers {
     COLEMAK = 0,
@@ -26,6 +26,7 @@ enum {
     TD_LBRC,
     TD_RBRC,
     TD_EQL_PLS,
+    TD_LPRN
 };
 
 // Tap Dance Definitions
@@ -33,7 +34,10 @@ tap_dance_action_t tap_dance_actions[] = {
     // Tap once for square bracket, twice for curly bracket
   [TD_LBRC] = ACTION_TAP_DANCE_DOUBLE(KC_LBRC, KC_LCBR),
   [TD_RBRC] = ACTION_TAP_DANCE_DOUBLE(KC_RBRC, KC_RCBR),
+  // Tap once for equals, twice for plus (removed)
   [TD_EQL_PLS] = ACTION_TAP_DANCE_DOUBLE(KC_EQL, KC_PLUS),
+  // Tap once for ( twice for ).
+  [TD_LPRN] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_RPRN)
 };
 
 
@@ -50,9 +54,9 @@ tap_dance_action_t tap_dance_actions[] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |  Tab   |   A  |   R  |   S  |   T  |   D  |                              |   H  |   N  |   E  |   I  |   O  |  ' "   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |  TO 2  |   Z  |   X  |   C  |   V  |   B  |PrtSc|CAPS_WRD  |Leader| NO   |   K  |   M  | ,  < | . >  | /  ? |  N/A   |
+ * |  TG(3) |   Z  |   X  |   C  |   V  |   B  |PrtSc|CAPS_WRD  |TG(4) | NO   |   K  |   M  | ,  < | . >  | /  ? |  N/A   |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        | n/a  |      |  ALT |Space |Gui+ALT| |Enter | BKSP | MO 2 | N/A  | MUTE |
+ *                        |  enc |  ALT |  ESC |Space |Gui+ALT| |Enter | BKSP | MO 2 | N/A  | MUTE |
  *                        |      |      |      |      |      |  |      |(LT,1)|      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -65,7 +69,7 @@ tap_dance_action_t tap_dance_actions[] = {
 
     TG(3), KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PSCR, CW_TOGG,      TG(4), KC_NO, KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_NO, 
 
-                          KC_NO, KC_NO, KC_LALT, KC_SPC, LAG(KC_NO), KC_ENT, LT(1,KC_BSPC), MO(2), KC_NO, KC_MUTE
+                          KC_NO, KC_NO, KC_ESC, KC_SPC, LAG(KC_NO), KC_ENT, LT(1,KC_BSPC), MO(2), KC_NO, KC_MUTE
 
         ),
 
@@ -97,26 +101,26 @@ KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R , 
  * Base Layer: FNUMSYM 
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |  F1    |   !  |   @  |   #  |   $  |   %  |                              |   ^  |   7  |   8  |   9  |   _  |  F10   |
+ * |  F10   |   !  |   @  |   #  |   $  |   %  |                              |      |   7  |   8  |   9  |   -  |  F1    |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  F2    |   &  |   *  |  (   |   )  | _/-  |                              |  =/+ |   4  |   5  |   6  |   NO |  F11   |
+ * |  F11   |   ^  |   &  |   *  | (/)  |   _  |                              |   =  |   4  |   5  |   6  |   +  |  F2    |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |  F3    |   f4 |   f5 |  [/{ | ]/}  |  ~/`  | f6  | f7   |  |  f8  |   f9 |  0   |   1  |   2  |   3  | ENTER|  F12   |
+ * |  F12   |   {  |   }  |  [/{ | ]/}  |  `   | f6   | f7   |  |  f8  |   f9 |  0   |   1  |   2  |   3  | ENTER|  F3    |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      | LGUI |  |      |      |      | N/A  |      |
+ *                        | enc  | F4   |  F5  | SPC  | LGUI |  |      |      |      |      |  enc |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  *
  */
     [FNUMSYM] = LAYOUT(
-            KC_F1, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERCENT, KC_CIRC, KC_7, KC_8, KC_9, KC_UNDS, KC_F10, 
+  KC_F10, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERCENT,                             KC_NO, KC_7, KC_8, KC_9, KC_MINUS, KC_F1, 
             
-            KC_F2, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_MINS, TD(TD_EQL_PLS), KC_4, KC_5, KC_6, KC_NO, KC_F11,
+  KC_F11, KC_CIRC, KC_AMPR, KC_ASTR, TD(TD_LPRN), KC_UNDS,                          KC_EQL, KC_4, KC_5, KC_6, KC_PLUS, KC_F2,
             
-            KC_F3, KC_F4, KC_F5, TD(TD_LBRC), TD(TD_RBRC), KC_GRAVE, KC_F6, KC_F7, KC_F8, KC_F9, KC_0, KC_1, KC_2, KC_3, KC_ENT, KC_F12, 
+  KC_F12, KC_LCBR, KC_RCBR, TD(TD_LBRC), TD(TD_RBRC), KC_GRAVE, KC_F6, KC_F7,      KC_F8, KC_F9, KC_0, KC_1, KC_2, KC_3, KC_ENT, KC_F3, 
             
-            KC_NO, KC_NO, KC_NO, KC_NO, KC_LGUI, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
-            ),
+  KC_NO, KC_F4, KC_F5, KC_SPC, KC_LGUI,                                             KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
+),
 
 
 
@@ -157,7 +161,7 @@ KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R , 
 
     KC_LCTL, KC_A, KC_X, KC_C, KC_D, KC_F, KC_G, KC_F9,      TG(4), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, 
 
-    KC_GRAVE, KC_LALT, KC_F3, KC_SPC, KC_F4,     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
+    KC_GRAVE, KC_F4, KC_F3, KC_SPC, KC_LALT,     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
     )
      
  };
