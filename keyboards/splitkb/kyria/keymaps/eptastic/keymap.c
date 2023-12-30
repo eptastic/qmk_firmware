@@ -17,9 +17,7 @@
 enum layers {
     COLEMAK = 0,
     EXTEND,
-    FNUMSYM,
-    LNUM,
-    DOTA 
+    FNUMSYM 
 };
 
 enum {
@@ -54,7 +52,7 @@ tap_dance_action_t tap_dance_actions[] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |  Tab   |   A  |   R  |   S  |   T  |   D  |                              |   H  |   N  |   E  |   I  |   O  |  ' "   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |  TG(3) |   Z  |   X  |   C  |   V  |   B  |PrtSc|CAPS_WRD  |TG(4) | NO   |   K  |   M  | ,  < | . >  | /  ? |  N/A   |
+ * | CAPS   |   Z  |   X  |   C  |   V  |   B  |PrtSc |  NO  |  |CA-Dl |CS_Esc|   K  |   M  | ,  < | . >  | /  ? |  N/A   |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |  enc |  ALT |  ESC |Space |Gui+ALT| |Enter | BKSP | MO 2 | N/A  | MUTE |
  *                        |      |      |      |      |      |  |      |(LT,1)|      |      |      |
@@ -67,7 +65,7 @@ tap_dance_action_t tap_dance_actions[] = {
     
     KC_TAB, LGUI_T(KC_A), LALT_T(KC_R), LSFT_T(KC_S), LCTL_T(KC_T), KC_D,     KC_H, RCTL_T(KC_N), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_O), KC_QUOT, 
 
-    TG(3), KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PSCR, CW_TOGG,      TG(4), KC_NO, KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_NO, 
+    CW_TOGG, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PSCR, KC_NO,      LCA(KC_DELETE), RCS(KC_ESC), KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_NO, 
 
                           KC_NO, KC_NO, KC_ESC, KC_SPC, LAG(KC_NO), KC_ENT, LT(1,KC_BSPC), MO(2), KC_NO, KC_MUTE
 
@@ -120,12 +118,12 @@ KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R , 
   KC_F12, KC_LCBR, KC_RCBR, TD(TD_LBRC), TD(TD_RBRC), KC_GRAVE, KC_F6, KC_F7,      KC_F8, KC_F9, KC_0, KC_1, KC_2, KC_3, KC_ENT, KC_F3, 
             
   KC_NO, KC_F4, KC_F5, KC_SPC, KC_LGUI,                                             KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
-),
+)
 
 
 
 
-    [LNUM] = LAYOUT(
+ /*   [LNUM] = LAYOUT(
             KC_NO, KC_NO, KC_7, KC_8, KC_9, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, 
             
             KC_NO, KC_NO, KC_4, KC_5, KC_6, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
@@ -137,7 +135,7 @@ KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R , 
 
 
 
-/*
+
  * Base Layer: DOTA
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
@@ -151,7 +149,7 @@ KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R , 
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  *
- */
+
 
  [DOTA] = LAYOUT(
             
@@ -164,9 +162,10 @@ KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R , 
     KC_GRAVE, KC_F4, KC_F3, KC_SPC, KC_LALT,     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
     )
      
- };
-
-
+ 
+ 
+*/
+};
 
 #ifdef ENCODER_ENABLE
 bool encoder_update_user(uint8_t index, bool clockwise) {
