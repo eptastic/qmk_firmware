@@ -59,9 +59,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤      ├──────────────────────────────────────────────────────┤
 KC_TAB, LGUI_T(KC_A), LALT_T(KC_R),  LSFT_T(KC_S), LCTL_T(KC_T), KC_D,   KC_H,    RCTL_T(KC_N), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_O), KC_QUOT,
   // ├──────────────────────────────────────────────────────┤      ├──────────────────────────────────────────────────────┤
-       CW_TOGG,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_NO,
+       CW_TOGG,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, LT(3, KC_NO),
   // ╰──────────────────────────────────────────────────────┤      ├──────────────────────────────────────────────────────╯
-                                  LT(2, KC_ESC),  KC_SPC, KC_PSCR,      LT(3, KC_ENT),  LT(1, KC_BSPC)
+                                  LT(2, KC_NO),  KC_SPC, KC_PSCR,   KC_ENT,  LT(1, KC_BSPC)
   //                            ╰───────────────────────────╯      ╰──────────────────╯
   ),
 
@@ -93,9 +93,9 @@ KC_TAB, LGUI_T(KC_A), LALT_T(KC_R),  LSFT_T(KC_S), LCTL_T(KC_T), KC_D,   KC_H,  
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        XXXXXXX, KC_NO, KC_NO, KC_NO, KC_WH_U, DPI_MOD, S_D_MOD,  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, KC_CIRC,   KC_BTN3, KC_BTN2, KC_BTN1, KC_NO,    KC_NO, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, KC_NO,
+       XXXXXXX, SNIPING,   KC_BTN3, KC_BTN2, KC_BTN1, DRGSCRL,    KC_NO, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, KC_NO,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, KC_NO, KC_NO, KC_WH_D, SNIPING, DRGSCRL,    KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO, KC_NO,
+       XXXXXXX, KC_NO, KC_NO, KC_WH_D, SNIPING, KC_NO,    KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO, KC_NO,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   KC_WH_L, KC_WH_R, XXXXXXX,    _______, XXXXXXX
   //                            ╰───────────────────────────╯ ╰──────────────────╯
