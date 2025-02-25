@@ -132,13 +132,13 @@ KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R , 
  * GAMING
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |  `/~   |   E |   1  |   2  |   3  |   R   |                              |   NO  |   NO  |   NO  |   NO  |   NO  |NO |
+ * |  `/~   |   E  |   1  |   2  |   3  |   R   |                              |   NO  |   NO  |   NO  |   NO  |   NO  |NO |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  Tab   |   Q  |   A  |   W  |   S  |   NO |                              |   NO  |   NO  |   NO  |  NO   |   NO  | NO|
+ * |  Tab   |   Q  |   A  |   W  |   S  |   K |                              |   NO  |   NO  |   NO  |  NO   |   NO  | NO|
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |  NO   |   Z  |   X  |   D  |   C  |   NO  |PrtSc |  NO  |  | NO | NO |   NO  |  NO  | NO  | NO  | NO  |  NO  | TG(3)
+ * |  LSHIFT|   Z  |   X  |   D  |   C  |   B  |PrtSc |  NO  |  | NO | NO |   NO  |  NO  | NO  | NO  | NO  |  NO  | TG(3)
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |  enc |  NO |  ESC |Space |  NO   |  | NO | NO | NO | N/A  | MUTE |
+ *                        |  enc |  NO |  J    |Space |  NO   |  | NO | NO | NO | N/A  | MUTE |
  *                        |      |      |      |      |      |  |    |    |    |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -147,11 +147,11 @@ KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R , 
     [GAMING] = LAYOUT(
     QK_GESC, KC_E, KC_1, KC_2, KC_3, KC_R,                                     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 
-    KC_TAB, KC_Q, KC_A, KC_W, KC_S, KC_NO,                                         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+    KC_TAB, KC_Q, KC_A, KC_W, KC_D, KC_K,                                         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 
-    KC_NO, KC_Z, KC_X, KC_D, KC_C, KC_NO, KC_PSCR, KC_NO,      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, TG(3),
+    KC_LSFT, KC_Z, KC_X, KC_S, KC_C, KC_B, KC_PSCR, KC_NO,      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, TG(3),
 
-                          KC_NO, KC_NO, KC_ESC, KC_SPC, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_MUTE
+                          KC_NO, KC_NO, KC_J, KC_SPC, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_MUTE
 
         )
 
