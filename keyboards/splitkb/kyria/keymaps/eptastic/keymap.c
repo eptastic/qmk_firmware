@@ -201,7 +201,7 @@ KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R , 
 
     KC_TAB, KC_Q, KC_Q, KC_W, KC_E, KC_R,                                         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 
-    KC_CTL, KC_LSFT, KC_A, KC_S, KC_D, KC_B, KC_PSCR, KC_NO,      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, TG(3),
+    KC_LCTL, KC_LSFT, KC_A, KC_S, KC_D, KC_B, KC_PSCR, KC_NO,      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, TG(3),
 
                           KC_NO, KC_NO, KC_J, KC_SPC, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_MUTE
 
