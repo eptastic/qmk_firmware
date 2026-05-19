@@ -47,9 +47,9 @@
 #define TAP_CODE_DELAY 10
 
 // Auto Shift Configuration, enabled only on Num keys
-#define AUTO_SHIFT_TIMEOUT 150
-#define NO_AUTO_SHIFT_ALPHA
-#define NO_AUTO_SHIFT_SPECIAL
+//#define AUTO_SHIFT_TIMEOUT 150
+//#define NO_AUTO_SHIFT_ALPHA
+//#define NO_AUTO_SHIFT_SPECIAL
 
 /* Charybdis-specific features. */
 

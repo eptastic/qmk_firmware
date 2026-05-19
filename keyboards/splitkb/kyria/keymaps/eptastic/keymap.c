@@ -45,8 +45,60 @@ tap_dance_action_t tap_dance_actions[] = {
   [TD_LPRN] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_RPRN)
 };
 
+// Custom CTRL_C,X,V macro
 
+enum custom_keycodes {
+    CTL_C = SAFE_RANGE,
+    CTL_V,
+    CTL_X
+};
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static uint16_t c_timer;
+    static uint16_t v_timer;
+    static uint16_t x_timer;
+
+    switch (keycode) {
+
+        case CTL_C:
+            if (record->event.pressed) {
+                c_timer = timer_read();
+            } else {
+                if (timer_elapsed(c_timer) < TAPPING_TERM) {
+                    tap_code(KC_C);
+                } else {
+                    tap_code16(C(KC_C));
+                }
+            }
+            return false;
+
+        case CTL_V:
+            if (record->event.pressed) {
+                v_timer = timer_read();
+            } else {
+                if (timer_elapsed(v_timer) < TAPPING_TERM) {
+                    tap_code(KC_V);
+                } else {
+                    tap_code16(C(KC_V));
+                }
+            }
+            return false;
+
+        case CTL_X:
+            if (record->event.pressed) {
+                x_timer = timer_read();
+            } else {
+                if (timer_elapsed(x_timer) < TAPPING_TERM) {
+                    tap_code(KC_X);
+                } else {
+                    tap_code16(C(KC_X));
+                }
+            }
+            return false;
+    }
+
+    return true;
+}
 
  const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -59,7 +111,7 @@ tap_dance_action_t tap_dance_actions[] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |  Tab   |   A  |   R  |   S  |   T  |   D  |                              |   H  |   N  |   E  |   I  |   O  |  ' "   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | CAPS   |   Z  |   X  |   C  |   V  |   B  |PrtSc |  NO  |  |CA-Dl |CS_Esc|   K  |   M  | ,  < | . >  | /  ? |  TG(3)   |
+ * | CAPS   |   Z  |   X  |   C  |   V  |   B  |PrtSc |MBTN1 |  |CA-Dl |CS_Esc|   K  |   M  | ,  < | . >  | /  ? |  TG(3)   |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |  enc |  ALT |  ESC |Space | M_USN| |Enter | BKSP | MO 2 | N/A  | MUTE |
  *                        |      |      |      |      |      |  |      |(LT,1)|      |      |      |
@@ -70,9 +122,9 @@ tap_dance_action_t tap_dance_actions[] = {
     [COLEMAK] = LAYOUT(
     QK_GESC, KC_Q, KC_W, KC_F, KC_P, KC_G,                                     KC_J, KC_L, KC_U, KC_Y, KC_SCLN, KC_BSLS,
 
-    KC_TAB, LGUI_T(KC_A), LALT_T(KC_R), LSFT_T(KC_S), LCTL_T(KC_T), KC_D,     KC_H, RCTL_T(KC_N), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_O), KC_QUOT, 
+    KC_TAB, LGUI_T(KC_A), LALT_T(KC_R), LSFT_T(KC_S), LCTL_T(KC_T), KC_D,     KC_H, RCTL_T(KC_N), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_O), KC_QUOT,
 
-    CW_TOGG, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PSCR, KC_NO,      LCA(KC_DELETE), RCS(KC_ESC), KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH, TG(3),
+    CW_TOGG, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PSCR, KC_BTN1,      LCA(KC_DELETE), RCS(KC_ESC), KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH, TG(3),
 
                           KC_NO, KC_NO, KC_ESC, KC_SPC, M_USN, KC_ENT, LT(1,KC_BSPC), MO(2), KC_NO, KC_MUTE
 
@@ -95,9 +147,9 @@ tap_dance_action_t tap_dance_actions[] = {
     [EXTEND] = LAYOUT(
             KC_WH_U, KC_NO, KC_NO, KC_WBAK, KC_WFWD, KC_MS_U,              KC_PGUP, KC_HOME, KC_APP, KC_END, KC_DEL, KC_MS_U,
 
-            KC_WH_D, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_MS_D,              KC_PGDN, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_MS_D, 
+            KC_WH_D, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_MS_D,              KC_PGDN, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_MS_D,
 
-KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R ,    KC_NO, KC_MRWD, KC_MFFD, KC_BTN1, KC_BTN2, KC_BTN3, KC_NO, KC_NO, 
+KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R ,    KC_NO, KC_MRWD, KC_MFFD, KC_BTN1, KC_BTN2, KC_BTN3, KC_NO, KC_NO,
 
                             KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
         ),
@@ -145,11 +197,11 @@ KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R , 
 
 
     [GAMING] = LAYOUT(
-    QK_GESC, KC_E, KC_1, KC_2, KC_3, KC_R,                                     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+    QK_GESC, KC_NO, KC_1, KC_2, KC_3, KC_4,                                     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 
-    KC_TAB, KC_Q, KC_A, KC_W, KC_D, KC_K,                                         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+    KC_TAB, KC_Q, KC_Q, KC_W, KC_E, KC_R,                                         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 
-    KC_LSFT, KC_Z, KC_X, KC_S, KC_C, KC_B, KC_PSCR, KC_NO,      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, TG(3),
+    KC_CTL, KC_LSFT, KC_A, KC_S, KC_D, KC_B, KC_PSCR, KC_NO,      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, TG(3),
 
                           KC_NO, KC_NO, KC_J, KC_SPC, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_MUTE
 
@@ -177,7 +229,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
 
 #ifdef ENCODER_ENABLE
 bool encoder_update_user(uint8_t index, bool clockwise) {
- 
+
     if (index == 0) {  // First encoder
         // Page Up/Page Down
         if (clockwise) {
