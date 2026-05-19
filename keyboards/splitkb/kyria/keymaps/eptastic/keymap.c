@@ -43,7 +43,7 @@ tap_dance_action_t tap_dance_actions[] = {
 
 // Macros
 enum custom_keycodes {
-    M_USN = SAFE_RANGE
+    M_USN = SAFE_RANGE,
     CTL_C,
     CTL_V,
     CTL_X
