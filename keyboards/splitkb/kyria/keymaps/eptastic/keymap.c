@@ -29,11 +29,6 @@ enum {
     TD_LPRN
 };
 
-// Macros
-enum {
-    M_USN = SAFE_RANGE
-};
-
 // Tap Dance Definitions
 tap_dance_action_t tap_dance_actions[] = {
     // Tap once for square bracket, twice for curly bracket
@@ -45,60 +40,15 @@ tap_dance_action_t tap_dance_actions[] = {
   [TD_LPRN] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_RPRN)
 };
 
-// Custom CTRL_C,X,V macro
 
+// Macros
 enum custom_keycodes {
-    CTL_C = SAFE_RANGE,
+    M_USN = SAFE_RANGE
+    CTL_C,
     CTL_V,
     CTL_X
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    static uint16_t c_timer;
-    static uint16_t v_timer;
-    static uint16_t x_timer;
-
-    switch (keycode) {
-
-        case CTL_C:
-            if (record->event.pressed) {
-                c_timer = timer_read();
-            } else {
-                if (timer_elapsed(c_timer) < TAPPING_TERM) {
-                    tap_code(KC_C);
-                } else {
-                    tap_code16(C(KC_C));
-                }
-            }
-            return false;
-
-        case CTL_V:
-            if (record->event.pressed) {
-                v_timer = timer_read();
-            } else {
-                if (timer_elapsed(v_timer) < TAPPING_TERM) {
-                    tap_code(KC_V);
-                } else {
-                    tap_code16(C(KC_V));
-                }
-            }
-            return false;
-
-        case CTL_X:
-            if (record->event.pressed) {
-                x_timer = timer_read();
-            } else {
-                if (timer_elapsed(x_timer) < TAPPING_TERM) {
-                    tap_code(KC_X);
-                } else {
-                    tap_code16(C(KC_X));
-                }
-            }
-            return false;
-    }
-
-    return true;
-}
 
  const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -210,20 +160,59 @@ KC_NO, LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V), KC_NO, KC_MS_L,KC_MS_R , 
 
 };
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record){
-    switch (keycode){
+    static uint16_t c_timer;
+    static uint16_t v_timer;
+    static uint16_t x_timer;
+
+    switch (keycode) {
+
         case M_USN:
-            if (record->event.pressed){
-                // When keycode M_USN is pressed
-                SEND_STRING("alex@connective.com.au");
-            } else {
-                // When keycode M_USN is released
+            if (record->event.pressed) {
+                SEND_STRING("custom_string");
             }
-            break;
+            return false;
+
+        case CTL_C:
+            if (record->event.pressed) {
+                c_timer = timer_read();
+            } else {
+                if (timer_elapsed(c_timer) < TAPPING_TERM) {
+                    tap_code(KC_C);
+                } else {
+                    tap_code16(C(KC_C));
+                }
+            }
+            return false;
+
+        case CTL_V:
+            if (record->event.pressed) {
+                v_timer = timer_read();
+            } else {
+                if (timer_elapsed(v_timer) < TAPPING_TERM) {
+                    tap_code(KC_V);
+                } else {
+                    tap_code16(C(KC_V));
+                }
+            }
+            return false;
+
+        case CTL_X:
+            if (record->event.pressed) {
+                x_timer = timer_read();
+            } else {
+                if (timer_elapsed(x_timer) < TAPPING_TERM) {
+                    tap_code(KC_X);
+                } else {
+                    tap_code16(C(KC_X));
+                }
+            }
+            return false;
     }
+
     return true;
-};
+}
 
 
 
